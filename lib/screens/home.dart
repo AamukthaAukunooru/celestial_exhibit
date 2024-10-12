@@ -21,8 +21,10 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
 
           children: <Widget>[
+            
+
             Image.asset(
-              'assets/images/your_image.png',
+              'assets/images/apod.jpg',
               width: 200,
             ),
 

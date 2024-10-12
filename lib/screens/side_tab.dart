@@ -1,3 +1,4 @@
+import 'package:celestial_exhibit/screens/gallery.dart';
 import 'package:celestial_exhibit/screens/home.dart';
 import 'package:celestial_exhibit/styles/colors.dart';
 import 'package:flutter/material.dart';
@@ -35,8 +36,7 @@ class SideTabBarState extends State<SideTabBar> {
               color: AppColors.text
             ),
             unselectedLabelTextStyle: const TextStyle(color: AppColors.text),
-
-            backgroundColor: AppColors.secondaryBg,
+            backgroundColor: AppColors.sideTabBg,
             destinations: _fetchTabItems().map((item) => NavigationRailDestination(
               icon: item['icon'],
               label: item['label'],
@@ -60,7 +60,7 @@ class SideTabBarState extends State<SideTabBar> {
       {
         'icon': const Icon(Icons.photo),
         'label': const Text('Gallery'),
-        'builder': () => const Center(child: Text('Gallery Page')),
+        'builder': () => const Gallery()
       },
       {
         'icon': const Icon(Icons.language),
@@ -84,6 +84,4 @@ class SideTabBarState extends State<SideTabBar> {
       },
     ];
   }
-
-
 }

@@ -7,11 +7,11 @@ class GlobalStyles {
   );
 
   static TextStyle primaryText = GlobalStyles.baseTextStyle.copyWith(
-    fontSize: 24,
-    fontWeight: FontWeight.bold,
+    fontSize: 16,
   );
 
   static TextStyle secondaryText = GlobalStyles.baseTextStyle.copyWith(
-    fontSize: 16,
+    fontSize: 12,
+    color: const Color(0x7FFFFFFF)
   );
 }
