@@ -6,6 +6,13 @@ import '../constants/strings/home_strings.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
+  /*
+      Featured
+      Today's Sky
+      Upcoming Astronomical Events
+      Highlights
+  */
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

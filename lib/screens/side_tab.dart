@@ -63,9 +63,14 @@ class SideTabBarState extends State<SideTabBar> {
         'builder': () => const Center(child: Text('Gallery Page')),
       },
       {
-        'icon': const Icon(Icons.circle),
+        'icon': const Icon(Icons.language),
         'label': const Text('Planets'),
         'builder': () => const Center(child: Text('Planets Page')),
+      },
+      {
+        'icon': const Icon(Icons.precision_manufacturing),
+        'label': const Text('Rovers'),
+        'builder': () => const Center(child: Text('Rovers Page')),
       },
       {
         'icon': const Icon(Icons.question_answer),
