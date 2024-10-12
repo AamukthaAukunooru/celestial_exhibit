@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 /* Screens */
 import 'screens/home.dart';
+import 'screens/side_tab.dart';
 
 /* Styles */
 import 'styles/colors.dart';
@@ -23,9 +24,9 @@ class MyApp extends StatelessWidget {
       title: GlobalStrings.appTitle,
       theme: ThemeData(
         primarySwatch: Colors.yellow,
-        scaffoldBackgroundColor: AppColors.background
+        scaffoldBackgroundColor: AppColors.primaryBg
       ),
-      home: const HomePage(),
+      home: const SideTabBar(),
     );
   }
 }
