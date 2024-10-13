@@ -49,13 +49,7 @@ class CardLayouts extends StatelessWidget {
                   if (loadingProgress == null) {
                     return child; // Image is fully loaded, return the child
                   }
-                  return Center(
-                    child: CircularProgressIndicator(
-                      value: loadingProgress.expectedTotalBytes != null
-                          ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
-                          : null,
-                    ),
-                  );
+                  return renderImgSkeleton(context, loadingProgress);
                 },
                 errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
                   return const Center(child: Icon(Icons.error)); // Show an error icon if the image fails to load
@@ -80,22 +74,9 @@ class CardLayouts extends StatelessWidget {
     );
   }
 
-  static Widget buildSkeleton() {
+  static Widget renderSkeleton() {
 
-    Widget imgWidget = SkeletonGlow(
-      backgroundColor: const Color(0x3F100F15),
-      glowColor: const Color(0x1F100F15),
-      glowHeight: CardDimensions.imgHeight,
-      glowMargin: const EdgeInsets.only(left: 12, right: 12, top: 12),
-      child: Container(
-        margin: const EdgeInsets.only(left: 12, right: 12, top: 12),
-        height: CardDimensions.imgHeight,
-        decoration: BoxDecoration(
-          color: const Color(0x3F100F15),
-          borderRadius: BorderRadius.circular(12),
-        ),
-      ),
-    );
+    Widget imgWidget = getImgSkeleton();
 
     Widget headerWidget = SkeletonGlow(
       backgroundColor: const Color(0x3F100F15),
@@ -153,6 +134,44 @@ class CardLayouts extends StatelessWidget {
           titleWidget,
         ],
       ),
+    );
+  }
+
+  static Widget getImgSkeleton({applyMargin = true, height}) {
+    return SkeletonGlow(
+      backgroundColor: const Color(0x3F100F15),
+      glowColor: const Color(0x1F100F15),
+      glowHeight: height ?? CardDimensions.imgHeight,
+      glowMargin: applyMargin ? const EdgeInsets.only(left: 12, right: 12, top: 12) : EdgeInsets.zero,
+      child: Container(
+        margin: applyMargin ? const EdgeInsets.only(left: 12, right: 12, top: 12) : EdgeInsets.zero,
+        height: height ?? CardDimensions.imgHeight,
+        decoration: BoxDecoration(
+          color: const Color(0x3F100F15),
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+    );
+  }
+
+  Widget renderImgSkeleton(context, loadingProgress) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end, // Align to the bottom
+      children: [
+        //Expanded(child: Container()), // This takes up the available space above
+        getImgSkeleton(applyMargin: false, height: CardDimensions.imgHeight - 16), // Reduce the height by 16 to account for the progress bar
+        Container(
+          width: MediaQuery.of(context).size.width * 0.9, // Set desired width
+          padding: const EdgeInsets.symmetric(horizontal: 16.0), // Optional padding for aesthetics
+          child: LinearProgressIndicator(
+            value: loadingProgress.expectedTotalBytes != null
+                ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
+                : null,
+            backgroundColor: const Color(0x3F100F15), // Set background color
+            valueColor: const AlwaysStoppedAnimation<Color>(Color.fromARGB(31, 248, 248, 249)), // Set progress color
+          ),
+        ),
+      ],
     );
   }
 

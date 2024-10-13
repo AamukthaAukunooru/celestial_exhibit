@@ -115,7 +115,7 @@ class Gallery extends StatelessWidget {
           return SizedBox(
             width: CardDimensions.width,
             height: CardDimensions.height,
-            child: CardLayouts.buildSkeleton()
+            child: CardLayouts.renderSkeleton()
           );
         } else if (snapshot.hasError) {
           return const SizedBox(
