@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../constants/dimensions/card_dimensions.dart';
 import '../styles/global_styles.dart';
+import 'package:skeletonizer/skeletonizer.dart';
+
+import 'skeleton_glow.dart';
 
 class CardLayouts extends StatelessWidget {
   String imageUrl;
@@ -19,7 +22,6 @@ class CardLayouts extends StatelessWidget {
     return Container(
       width: CardDimensions.width,
       height: CardDimensions.height,
-      //margin: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 25.0),
       decoration: BoxDecoration(
         color: const Color(0x3F100F15),
         borderRadius: BorderRadius.circular(12),
@@ -32,13 +34,14 @@ class CardLayouts extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
+      child:  Column(
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: Container(
               width: CardDimensions.width,
               height: CardDimensions.imgHeight,
+              padding: const EdgeInsets.only(left: 12, right: 12, top: 12),
               child: Image.network(
                 imageUrl,
                 fit: BoxFit.cover,
@@ -76,4 +79,65 @@ class CardLayouts extends StatelessWidget {
       ),
     );
   }
+
+  static Widget buildSkeleton() {
+    return SkeletonGlow(
+      backgroundColor: const Color(0x3F100F15),
+      glowColor: const Color(0x1F100F15),
+      child: Container(
+        width: CardDimensions.width,
+        height: CardDimensions.height,
+        decoration: BoxDecoration(
+          color: const Color(0x3F100F15),
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: const [
+            BoxShadow(
+              color: Color(0x3F100F15),
+              blurRadius: 10.0,
+              offset: Offset(0, 4),
+              spreadRadius: 1.0,
+            ),
+          ],
+        ),
+        child: Column(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Container(
+                margin: const EdgeInsets.only(left: 12, right: 12, top: 12),
+                decoration: BoxDecoration(
+                  color: const Color(0x1F100F15),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Container(
+                  height: CardDimensions.imgHeight,
+                ),
+              ),
+            ),
+            const SizedBox(height: 8.0),
+            Container(
+              width: CardDimensions.width,
+              height: 16,
+              margin: const EdgeInsets.only(left: 12, right: 12),
+              decoration: BoxDecoration(
+                color: const Color(0x3F100F15),
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+            const SizedBox(height: 4.0),
+            Container(
+              width: CardDimensions.width,
+              height: 12,
+              margin: const EdgeInsets.only(left: 12, right: 12),
+              decoration: BoxDecoration(
+                color: const Color(0x3F100F15),
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
 }

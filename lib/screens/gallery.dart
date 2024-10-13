@@ -1,7 +1,6 @@
 import 'package:celestial_exhibit/constants/dimensions/card_dimensions.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'card_layouts.dart';
 import '../api_services.dart';
 
@@ -19,58 +18,58 @@ class Gallery extends StatelessWidget {
     });
 
     // Sample data for demonstration
-    final List<Map<String, String>> cardData = [
-      {
-        'imageUrl': 'https://apod.nasa.gov/apod/image/2410/241010_eggleston_1024.jpg',
-        'title': 'Astronomy Picture of the Day',
-        'description': 'Northern Lights, West Virginia',
-      },
-      {
-        'imageUrl': 'https://apod.nasa.gov/apod/image/2410/241010_eggleston_1024.jpg',
-        'title': 'Astronomy Picture of the Day',
-        'description': 'Another description here',
-      },
-      {
-        'imageUrl': 'https://apod.nasa.gov/apod/image/2410/241010_eggleston_1024.jpg',
-        'title': 'Astronomy Picture of the Day',
-        'description': 'Northern Lights, West Virginia',
-      },
-      {
-        'imageUrl': 'https://apod.nasa.gov/apod/image/2410/241010_eggleston_1024.jpg',
-        'title': 'Astronomy Picture of the Day',
-        'description': 'Another description here',
-      },
-      {
-        'imageUrl': 'https://apod.nasa.gov/apod/image/2410/241010_eggleston_1024.jpg',
-        'title': 'Astronomy Picture of the Day',
-        'description': 'Northern Lights, West Virginia',
-      },
-      {
-        'imageUrl': 'https://apod.nasa.gov/apod/image/2410/241010_eggleston_1024.jpg',
-        'title': 'Astronomy Picture of the Day',
-        'description': 'Another description here',
-      },
-      {
-        'imageUrl': 'https://apod.nasa.gov/apod/image/2410/241010_eggleston_1024.jpg',
-        'title': 'Astronomy Picture of the Day',
-        'description': 'Northern Lights, West Virginia',
-      },
-      {
-        'imageUrl': 'https://apod.nasa.gov/apod/image/2410/241010_eggleston_1024.jpg',
-        'title': 'Astronomy Picture of the Day',
-        'description': 'Another description here',
-      },
-      {
-        'imageUrl': 'https://apod.nasa.gov/apod/image/2410/241010_eggleston_1024.jpg',
-        'title': 'Astronomy Picture of the Day',
-        'description': 'Northern Lights, West Virginia',
-      },
-      {
-        'imageUrl': 'https://apod.nasa.gov/apod/image/2410/241010_eggleston_1024.jpg',
-        'title': 'Astronomy Picture of the Day',
-        'description': 'Another description here',
-      },
-    ];
+    // final List<Map<String, String>> cardData = [
+    //   {
+    //     'imageUrl': 'https://apod.nasa.gov/apod/image/2410/241010_eggleston_1024.jpg',
+    //     'title': 'Astronomy Picture of the Day',
+    //     'description': 'Northern Lights, West Virginia',
+    //   },
+    //   {
+    //     'imageUrl': 'https://apod.nasa.gov/apod/image/2410/241010_eggleston_1024.jpg',
+    //     'title': 'Astronomy Picture of the Day',
+    //     'description': 'Another description here',
+    //   },
+    //   {
+    //     'imageUrl': 'https://apod.nasa.gov/apod/image/2410/241010_eggleston_1024.jpg',
+    //     'title': 'Astronomy Picture of the Day',
+    //     'description': 'Northern Lights, West Virginia',
+    //   },
+    //   {
+    //     'imageUrl': 'https://apod.nasa.gov/apod/image/2410/241010_eggleston_1024.jpg',
+    //     'title': 'Astronomy Picture of the Day',
+    //     'description': 'Another description here',
+    //   },
+    //   {
+    //     'imageUrl': 'https://apod.nasa.gov/apod/image/2410/241010_eggleston_1024.jpg',
+    //     'title': 'Astronomy Picture of the Day',
+    //     'description': 'Northern Lights, West Virginia',
+    //   },
+    //   {
+    //     'imageUrl': 'https://apod.nasa.gov/apod/image/2410/241010_eggleston_1024.jpg',
+    //     'title': 'Astronomy Picture of the Day',
+    //     'description': 'Another description here',
+    //   },
+    //   {
+    //     'imageUrl': 'https://apod.nasa.gov/apod/image/2410/241010_eggleston_1024.jpg',
+    //     'title': 'Astronomy Picture of the Day',
+    //     'description': 'Northern Lights, West Virginia',
+    //   },
+    //   {
+    //     'imageUrl': 'https://apod.nasa.gov/apod/image/2410/241010_eggleston_1024.jpg',
+    //     'title': 'Astronomy Picture of the Day',
+    //     'description': 'Another description here',
+    //   },
+    //   {
+    //     'imageUrl': 'https://apod.nasa.gov/apod/image/2410/241010_eggleston_1024.jpg',
+    //     'title': 'Astronomy Picture of the Day',
+    //     'description': 'Northern Lights, West Virginia',
+    //   },
+    //   {
+    //     'imageUrl': 'https://apod.nasa.gov/apod/image/2410/241010_eggleston_1024.jpg',
+    //     'title': 'Astronomy Picture of the Day',
+    //     'description': 'Another description here',
+    //   },
+    // ];
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -82,13 +81,22 @@ class Gallery extends StatelessWidget {
             spacing: 16,
             runSpacing: 16,
             children: [
-              buildCardLayout('2024-10-08'),
-              buildCardLayout('2024-10-02'),
-              buildCardLayout('2024-10-03'),
-              buildCardLayout('2024-10-04'),
-              buildCardLayout('2024-10-05'),
-              buildCardLayout('2024-10-06'),
-              buildCardLayout('2024-10-07'),
+              buildCardLayout('2024-09-08'),
+              buildCardLayout('2024-09-02'),
+              buildCardLayout('2024-09-03'),
+              buildCardLayout('2024-09-04'),
+              buildCardLayout('2024-09-05'),
+              buildCardLayout('2024-09-06'),
+              buildCardLayout('2024-09-07'),
+              buildCardLayout('2024-09-09'),
+              buildCardLayout('2024-09-10'),
+              buildCardLayout('2024-09-11'),
+              buildCardLayout('2024-09-12'),
+              buildCardLayout('2024-09-13'),
+              buildCardLayout('2024-09-14'),
+              buildCardLayout('2024-09-15'),
+              buildCardLayout('2024-09-16'),
+              buildCardLayout('2024-09-17'),
             ],
           )
         ),
@@ -104,10 +112,10 @@ class Gallery extends StatelessWidget {
       future: apiService.fetchApod(date),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const SizedBox(
+          return SizedBox(
             width: CardDimensions.width,
             height: CardDimensions.height,
-            child: Center(child: CircularProgressIndicator()),
+            child: CardLayouts.buildSkeleton()
           );
         } else if (snapshot.hasError) {
           return const SizedBox(
