@@ -4,8 +4,17 @@ class SkeletonGlow extends StatefulWidget {
   final Widget child;
   final Color backgroundColor;
   final Color glowColor;
+  final double glowHeight;
+  final EdgeInsets? glowMargin;
 
-  const SkeletonGlow({super.key, required this.child, required this.backgroundColor, required this.glowColor});
+  const SkeletonGlow({
+    Key? key,
+    required this.child,
+    required this.backgroundColor,
+    required this.glowColor,
+    required this.glowHeight,
+    this.glowMargin,
+  }) : super(key: key);
 
   @override
   SkeletonGlowState createState() => SkeletonGlowState();
@@ -42,16 +51,18 @@ class SkeletonGlowState extends State<SkeletonGlow>
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        widget.child,
+        widget.child, // The actual widget
         AnimatedBuilder(
           animation: _animation,
           builder: (context, child) {
             return Container(
+              height: widget.glowHeight,
+              margin: widget.glowMargin ?? EdgeInsets.zero,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 gradient: LinearGradient(
-                  begin: Alignment(-1.5 + _animation.value, -1.5),
-                  end: Alignment(1.5 + _animation.value, 1.5),
+                  begin: Alignment(_animation.value, 0),
+                  end: Alignment(_animation.value + 1, 0),
                   colors: [
                     widget.backgroundColor,
                     widget.glowColor,

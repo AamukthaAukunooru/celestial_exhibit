@@ -81,61 +81,77 @@ class CardLayouts extends StatelessWidget {
   }
 
   static Widget buildSkeleton() {
-    return SkeletonGlow(
+
+    Widget imgWidget = SkeletonGlow(
       backgroundColor: const Color(0x3F100F15),
       glowColor: const Color(0x1F100F15),
+      glowHeight: CardDimensions.imgHeight,
+      glowMargin: const EdgeInsets.only(left: 12, right: 12, top: 12),
       child: Container(
-        width: CardDimensions.width,
-        height: CardDimensions.height,
+        margin: const EdgeInsets.only(left: 12, right: 12, top: 12),
+        height: CardDimensions.imgHeight,
         decoration: BoxDecoration(
           color: const Color(0x3F100F15),
           borderRadius: BorderRadius.circular(12),
-          boxShadow: const [
-            BoxShadow(
-              color: Color(0x3F100F15),
-              blurRadius: 10.0,
-              offset: Offset(0, 4),
-              spreadRadius: 1.0,
-            ),
-          ],
         ),
-        child: Column(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Container(
-                margin: const EdgeInsets.only(left: 12, right: 12, top: 12),
-                decoration: BoxDecoration(
-                  color: const Color(0x1F100F15),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Container(
-                  height: CardDimensions.imgHeight,
-                ),
-              ),
-            ),
-            const SizedBox(height: 8.0),
-            Container(
-              width: CardDimensions.width,
-              height: 16,
-              margin: const EdgeInsets.only(left: 12, right: 12),
-              decoration: BoxDecoration(
-                color: const Color(0x3F100F15),
-                borderRadius: BorderRadius.circular(8),
-              ),
-            ),
-            const SizedBox(height: 4.0),
-            Container(
-              width: CardDimensions.width,
-              height: 12,
-              margin: const EdgeInsets.only(left: 12, right: 12),
-              decoration: BoxDecoration(
-                color: const Color(0x3F100F15),
-                borderRadius: BorderRadius.circular(8),
-              ),
-            ),
-          ],
+      ),
+    );
+
+    Widget headerWidget = SkeletonGlow(
+      backgroundColor: const Color(0x3F100F15),
+      glowColor: const Color(0x1F100F15),
+      glowHeight: 16,
+      glowMargin: const EdgeInsets.only(left: 12, right: 12),
+      child: Container(
+        width: CardDimensions.width,
+        height: 16,
+        margin: const EdgeInsets.only(left: 12, right: 12),
+        decoration: BoxDecoration(
+          color: const Color(0x3F100F15),
+          borderRadius: BorderRadius.circular(8),
         ),
+      ),
+    );
+
+    Widget titleWidget = SkeletonGlow(
+      backgroundColor: const Color(0x3F100F15),
+      glowColor: const Color(0x1F100F15),
+      glowHeight: 12,
+      glowMargin: const EdgeInsets.only(left: 12, right: 12),
+      child: Container(
+        width: CardDimensions.width,
+        height: 12,
+        margin: const EdgeInsets.only(left: 12, right: 12),
+        decoration: BoxDecoration(
+          color: const Color(0x3F100F15),
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+    );
+
+    return Container(
+      width: CardDimensions.width,
+      height: CardDimensions.height,
+      decoration: BoxDecoration(
+        color: const Color(0x3F100F15),
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0x3F100F15),
+            blurRadius: 10.0,
+            offset: Offset(0, 4),
+            spreadRadius: 1.0,
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          imgWidget,
+          const SizedBox(height: 8.0),
+          headerWidget,
+          const SizedBox(height: 4.0),
+          titleWidget,
+        ],
       ),
     );
   }
