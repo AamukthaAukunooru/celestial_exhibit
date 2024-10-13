@@ -82,7 +82,7 @@ class Gallery extends StatelessWidget {
             spacing: 16,
             runSpacing: 16,
             children: [
-              buildCardLayout('2024-10-01'),
+              buildCardLayout('2024-10-08'),
               buildCardLayout('2024-10-02'),
               buildCardLayout('2024-10-03'),
               buildCardLayout('2024-10-04'),
