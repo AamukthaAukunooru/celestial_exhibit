@@ -1,8 +1,8 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import '../constants/dimensions/card_dimensions.dart';
 import '../styles/global_styles.dart';
-import 'package:skeletonizer/skeletonizer.dart';
-
 import 'skeleton_glow.dart';
 
 class CardLayouts extends StatelessWidget {

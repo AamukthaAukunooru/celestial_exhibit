@@ -8,13 +8,13 @@ class SkeletonGlow extends StatefulWidget {
   final EdgeInsets? glowMargin;
 
   const SkeletonGlow({
-    Key? key,
+    super.key,
     required this.child,
     required this.backgroundColor,
     required this.glowColor,
     required this.glowHeight,
     this.glowMargin,
-  }) : super(key: key);
+  });
 
   @override
   SkeletonGlowState createState() => SkeletonGlowState();

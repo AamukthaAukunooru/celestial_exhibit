@@ -1,14 +1,6 @@
-/* Packages */
 import 'package:flutter/material.dart';
-
-/* Screens */
-import 'screens/home.dart';
 import 'screens/side_tab.dart';
-
-/* Styles */
 import 'styles/colors.dart';
-
-/* Constants */
 import 'constants/strings/global_strings.dart';
 
 void main() {
