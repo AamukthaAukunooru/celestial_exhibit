@@ -10,42 +10,57 @@ class SideTabBar extends StatefulWidget {
   SideTabBarState createState() => SideTabBarState();
 }
 
-class SideTabBarState extends State<SideTabBar> {
-  int _selectedIndex = 0;
+class SideTabBarState extends State<SideTabBar> with SingleTickerProviderStateMixin {
+  late TabController _tabController;
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: _fetchTabItems().length, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Row(
-        children: <Widget>[
-          // Left Side Navigation Rail
-          NavigationRail(
-            selectedIndex: _selectedIndex,
-            onDestinationSelected: _onItemTapped,
-            labelType: NavigationRailLabelType.all,
+      appBar: AppBar(
+        title: const Text('Celestial Exhibit'),
+        backgroundColor: AppColors.sideTabBg,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(20.0),
+          child: Container(
+            color: AppColors.sideTabBg,
+            child: TabBar(
+              controller: _tabController,
+              onTap: (index) {
+                setState(() {
+                  _tabController.index = index;
+                });
+              },
+              indicatorColor: const Color(0xFF6750A4),
 
-            selectedLabelTextStyle: const TextStyle(color: AppColors.text),
+              unselectedLabelColor: AppColors.text,
+              unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w100),
 
-            unselectedIconTheme: const IconThemeData(
-              color: AppColors.text
+              dividerColor: Colors.transparent,
+
+
+              tabs: _fetchTabItems().map((item) => Tab(
+                icon: item['icon'],
+                text: item['label'].data,
+              )).toList(),
             ),
-            unselectedLabelTextStyle: const TextStyle(color: AppColors.text),
-            backgroundColor: AppColors.sideTabBg,
-            destinations: _fetchTabItems().map((item) => NavigationRailDestination(
-              icon: item['icon'],
-              label: item['label'],
-            )).toList(),
           ),
-          Expanded(
-            child: _fetchTabItems()[_selectedIndex]['builder'](), // Call the builder function for the selected page
-          ),
-        ],
+        ),
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: _fetchTabItems().map<Widget>((item) => item['builder']()).toList(),
       ),
     );
   }
@@ -60,7 +75,7 @@ class SideTabBarState extends State<SideTabBar> {
       {
         'icon': const Icon(Icons.photo),
         'label': const Text('Gallery'),
-        'builder': () => const Gallery()
+        'builder': () => const Gallery(),
       },
       {
         'icon': const Icon(Icons.language),

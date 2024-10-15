@@ -1,5 +1,6 @@
+import 'package:celestial_exhibit/constants/dimensions/card_dimensions.dart';
 import 'package:flutter/material.dart';
-import 'screens/side_tab.dart';
+import 'screens/top_bar.dart';
 import 'styles/colors.dart';
 import 'constants/strings/global_strings.dart';
 
@@ -12,10 +13,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CardDimensions.setScreenDimensions(context);
+
     return MaterialApp(
       title: GlobalStrings.appTitle,
       theme: ThemeData(
-        primarySwatch: Colors.yellow,
         scaffoldBackgroundColor: AppColors.primaryBg
       ),
       home: const SideTabBar(),

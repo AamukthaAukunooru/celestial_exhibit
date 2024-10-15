@@ -76,10 +76,10 @@ class Gallery extends StatelessWidget {
         child: Container(
           width: double.infinity,
           margin: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 25.0),
-          padding: const EdgeInsets.only(right: 30.0),
           child: Wrap(
             spacing: 16,
             runSpacing: 16,
+            alignment: WrapAlignment.center,
             children: [
               buildCardLayout('2024-09-08'),
               buildCardLayout('2024-09-02'),
@@ -98,42 +98,41 @@ class Gallery extends StatelessWidget {
               buildCardLayout('2024-09-16'),
               buildCardLayout('2024-09-17'),
             ],
-          )
+          ),
         ),
       ),
     );
   }
 }
 
-  Widget buildCardLayout(String date) {
-    ApiService apiService = ApiService();
+Widget buildCardLayout(String date) {
+  ApiService apiService = ApiService();
 
-    return FutureBuilder(
-      future: apiService.fetchApod(date),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return SizedBox(
-            width: CardDimensions.width,
-            height: CardDimensions.height,
-            child: CardLayouts.renderSkeleton()
-          );
-        } else if (snapshot.hasError) {
-          return const SizedBox(
-            width: CardDimensions.width,
-            height: CardDimensions.height,
-            child: Center(child: Text('Error fetching data')),
-          );
-        } else if (snapshot.hasData) {
-          final cardData = snapshot.data;
-          return CardLayouts(
-            imageUrl: cardData!['media_type'] == 'video'
-                ? cardData['thumbnail_url']
-                : cardData['hdurl'],
-            title: cardData['title'],
-          );
-        }
-        return const SizedBox.shrink(); // Fallback if nothing matches
-      },
-    );
-
+  return FutureBuilder(
+    future: apiService.fetchApod(date),
+    builder: (context, snapshot) {
+      if (snapshot.connectionState == ConnectionState.waiting) {
+        return SizedBox(
+          width: CardDimensions.width,
+          height: CardDimensions.height,
+          child: CardLayouts.renderSkeleton()
+        );
+      } else if (snapshot.hasError) {
+        return SizedBox(
+          width: CardDimensions.width,
+          height: CardDimensions.height,
+          child: const Center(child: Text('Error fetching data')),
+        );
+      } else if (snapshot.hasData) {
+        final cardData = snapshot.data;
+        return CardLayouts(
+          imageUrl: cardData!['media_type'] == 'video'
+              ? cardData['thumbnail_url']
+              : cardData['hdurl'],
+          title: cardData['title'],
+        );
+      }
+      return const SizedBox.shrink(); // Fallback if nothing matches
+    },
+  );
 }
